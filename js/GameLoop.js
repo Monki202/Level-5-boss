@@ -1,7 +1,7 @@
 var canvas, context, ball, player, timer, interval = 1000/60;
 var frictionX = 1;
 var frictionY = 1;
-var gravity = 0.3;
+var gravity = 0.4;
 
 var Score = 0;
 
@@ -17,9 +17,10 @@ context.fillstyle = "black"
 
 
 ball = new GameObject(canvas.width/2,canvas.height/2,80,80,"#ff0000")
-player = new GameObject( 0, 600, 190, 40,"#000000")
-player2 = new GameObject( 900, 600, 190, 40,"#000000")
-player3 = new GameObject( canvas.width/2, 300, 190, 40,"#000000")
+player = new GameObject( 0, 1400, 190, 40,"#000000")
+player2 = new GameObject( 900, 1400, 190, 40,"#000000")
+player3 = new GameObject( canvas.width/2 , 1000, 190, 20,"#000000")
+player3.pivotx = -95
 ball.vx = 10;
 ball.vy = 0;
 
@@ -37,6 +38,15 @@ function animate()
     doHandleGravity();
     doUpdatePosition();
     doCheckBottomBounds();
+
+if (w == true)
+{
+    player3.color = "#00ff00";
+} 
+if (w == false)
+{
+    player3.color = "#000000";
+} 
 
 if (a == true)
 {
@@ -58,7 +68,7 @@ if (d == true)
 if (d == false)
 {
     player2.color = "#000000";
-    player2.angle = 110;
+    player2.angle = 100;
 } 
 
     ball.move();
@@ -98,7 +108,7 @@ ball.vy *= -1;
     if (ball.collisionCheck(player)) {
         if (a == true) 
         {
-            ball.vy = -11;
+            ball.vy = -13;
             ball.vx = 9; 
         } 
         //  else 
@@ -111,8 +121,20 @@ ball.vy *= -1;
     if (ball.collisionCheck(player2)) {
         if (d == true) 
         {
-            ball.vy = -11;
+            ball.vy = -13;
             ball.vx = -9; 
+        } 
+        // else 
+        // {
+        //      ball.vy = -10;
+        //      ball.vx = -6;
+        // }
+    }
+
+        if (ball.collisionCheck(player3)) {
+        if (w == true) 
+        {
+            ball.vy = -13; 
         } 
         // else 
         // {
@@ -131,9 +153,9 @@ ball.vy *= -1;
     }
 
     function doCheckBottomBounds() {
-        if (ball.y > canvas.height - ball.height/2) 
+        if (ball.y > canvas.height - ball.height/2 +100) 
         {
-            ball.y = canvas.height - ball.height/2;
+            ball.y--
             
         }
     }
