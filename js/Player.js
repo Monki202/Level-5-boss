@@ -1,6 +1,8 @@
 function GameObject(x,y,w,h,color,angle)
 {
 
+    this.pivotx = 0;
+
     this.angle = 0;
 
     this.vx = 0;
@@ -103,7 +105,7 @@ context.save();
         context.fillStyle = this.color;
         context.translate(this.x, this.y);
         context.rotate(this.angle * Math.PI / 180);
-        context.fillRect(0, -this.height / 2, this.width, this.height);
+        context.fillRect(this.pivotx, -this.height / 2, this.width, this.height);
     context.restore();
 
      }
