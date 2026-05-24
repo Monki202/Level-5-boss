@@ -51,11 +51,11 @@ function GameObject(x,y,w,h,color,angle)
     //SET UP COLOR
     if(color==undefined)
     {
-        this.color = color;
+        this.color = "#ff0000";
     }
     else
     {
-        this.color = "#ff0000";
+        this.color = color
     }
 
 
